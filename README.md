@@ -313,4 +313,7 @@ Interactive API documentation is available through FastAPI Swagger UI at `/docs`
 
 ## Author
 
-Developed as an AI and full-stack application project to explore computer vision, object detection, industrial safety monitoring and backend development.
+**Raniya Rahman**
+
+GitHub: [@your-github-username](https://github.com/your-github-username)
+Developed as a portfolio project focused on AI, computer vision and full-stack application development.
