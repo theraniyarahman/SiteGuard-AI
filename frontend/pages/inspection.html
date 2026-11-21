@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>New Inspection | SiteGuard AI</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <img
+                    src="../assets/images/siteguard-logo.png"
+                    alt="SiteGuard AI"
+                    class="brand-logo"
+                >
+
+                <div class="brand-text">
+                    <h2>SiteGuard<span>AI</span></h2>
+                    <p>INDUSTRIAL SAFETY</p>
+                </div>
+
+            </div>
+
+            <div class="sidebar-section">
+
+                <p class="section-label">MAIN MENU</p>
+
+                <nav class="navigation">
+
+                    <a href="../index.html" class="nav-item">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Overview</span>
+                    </a>
+
+                    <a href="inspection.html" class="nav-item active">
+                        <i data-lucide="scan"></i>
+                        <span>New Inspection</span>
+                    </a>
+
+                    <a href="history.html" class="nav-item">
+                        <i data-lucide="history"></i>
+                        <span>Inspection History</span>
+                    </a>
+
+                    <a href="analytics.html" class="nav-item">
+                        <i data-lucide="chart-no-axes-combined"></i>
+                        <span>Analytics</span>
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <p>System Status</p>
+                        <span>Backend Connected</span>
+                    </div>
+                </div>
+
+                <a href="#" class="nav-item">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div class="topbar-title">
+                    <p class="breadcrumb">Workspace / New Inspection</p>
+                    <h1>New Inspection</h1>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="system-indicator">
+                        <span class="status-dot"></span>
+                        System Online
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- INTRODUCTION -->
+
+            <section class="welcome-section">
+
+                <div class="welcome-content">
+
+                    <p class="welcome-label">AI-POWERED PPE MONITORING</p>
+
+                    <h2>Workplace Safety Inspection</h2>
+
+                    <p>
+                        Upload a workplace image to detect safety equipment
+                        and identify potential PPE violations.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- IMAGE UPLOAD -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Upload Inspection Image</h3>
+                        <p>Supported formats: JPG, JPEG and PNG (Maximum 10 MB)</p>
+                    </div>
+                </div>
+
+                <div class="upload-area" id="uploadArea">
+
+                    <i data-lucide="cloud-upload"></i>
+
+                    <h3>Drag and drop your image here</h3>
+
+                    <p>or browse files from your computer</p>
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                        hidden
+                    >
+
+                    <button
+                        class="primary-button"
+                        id="browseBtn"
+                        type="button"
+                    >
+                        <i data-lucide="folder-open"></i>
+                        Browse Image
+                    </button>
+
+                </div>
+
+
+                <!-- IMAGE PREVIEW -->
+
+                <div id="imagePreviewContainer" hidden>
+
+                    <h3>Selected Image</h3>
+
+                    <img
+                        id="imagePreview"
+                        alt="Selected inspection preview"
+                    >
+
+                    <p id="selectedFileName"></p>
+
+                    <button
+                        class="primary-button"
+                        id="inspectBtn"
+                        type="button"
+                    >
+                        <i data-lucide="scan"></i>
+                        Run AI Inspection
+                    </button>
+
+                </div>
+
+                <p id="uploadMessage" role="status"></p>
+
+            </section>
+
+
+            <!-- RESULTS -->
+
+            <section class="panel" id="resultsSection" hidden>
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Inspection Results</h3>
+                        <p>AI-powered PPE detection report</p>
+                    </div>
+                </div>
+
+                <div id="inspectionResults"></div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer class="dashboard-footer">
+
+                <p>SiteGuard AI © 2026</p>
+
+                <p>AI-Powered Industrial Safety Monitoring</p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <!-- PDF GENERATION LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- APPLICATION SCRIPTS -->
+    <script src="../js/api.js"></script>
+    <script src="../js/inspection.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>

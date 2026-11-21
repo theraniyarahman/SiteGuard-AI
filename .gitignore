@@ -1,0 +1,37 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+.env
+.vscode/
+
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+.pytest_cache/
+.DS_Store
+Thumbs.db# Environment variables
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Generated uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Test outputs
+backend/test_outputs/*
+
+# System files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SiteGuard AI | Analytics</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- ======================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <img
+                src="../assets/images/siteguard-logo.png"
+                alt="SiteGuard AI"
+                class="brand-logo"
+            >
+
+            <div class="brand-text">
+                <h2>SiteGuard<span>AI</span></h2>
+                <p>INDUSTRIAL SAFETY</p>
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="sidebar-section">
+
+            <p class="section-label">MAIN MENU</p>
+
+            <nav class="navigation">
+
+                <a href="../index.html" class="nav-item" id="overviewNav">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a href="inspection.html" class="nav-item" id="inspectionNav">
+                    <i data-lucide="scan-line"></i>
+                    <span>New Inspection</span>
+                </a>
+
+                <a href="history.html" class="nav-item" id="historyNav">
+                    <i data-lucide="history"></i>
+                    <span>Inspection History</span>
+                </a>
+
+                <a href="analytics.html" class="nav-item active" id="analyticsNav">
+                    <i data-lucide="chart-no-axes-combined"></i>
+                    <span>Analytics</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+                    <p>System Status</p>
+                    <span>Operational</span>
+                </div>
+
+            </div>
+
+            <a href="#" class="nav-item" id="settingsNav">
+                <i data-lucide="settings"></i>
+                <span>Settings</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ======================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-title">
+
+                <p class="breadcrumb">SiteGuard AI / Analytics</p>
+
+                <h1>Analytics Dashboard</h1>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-indicator">
+                    <span class="status-dot"></span>
+                    System Operational
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">SG</div>
+
+                    <div>
+                        <h4>Administrator</h4>
+                        <p>Safety Monitoring</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ======================================
+             WELCOME SECTION
+        ====================================== -->
+
+        <section class="welcome-section">
+
+            <div class="welcome-content">
+
+                <p class="welcome-label">DATA INSIGHTS</p>
+
+                <h2>Safety Analytics & Reports</h2>
+
+                <p>
+                    Monitor inspection activity, identify potential PPE
+                    violations and understand workplace safety trends.
+                </p>
+
+            </div>
+
+
+            <!-- ANALYTICS CONTROLS -->
+
+            <div class="analytics-controls">
+
+                <!-- DATE FILTER -->
+
+                <select id="analyticsDateFilter" class="analytics-date-filter">
+
+                    <option value="all">All Time</option>
+
+                    <option value="today">Today</option>
+
+                    <option value="7days">Last 7 Days</option>
+
+                    <option value="30days">Last 30 Days</option>
+
+                </select>
+
+
+                <!-- EXPORT CSV -->
+
+                <button
+                    class="primary-button"
+                    id="exportAnalyticsBtn"
+                    type="button"
+                >
+
+                    <i data-lucide="download"></i>
+
+                    Export CSV
+
+                </button>
+
+
+                <!-- REFRESH ANALYTICS -->
+
+                <button
+                    class="primary-button"
+                    id="refreshAnalyticsBtn"
+                    type="button"
+                >
+
+                    <i data-lucide="refresh-cw"></i>
+
+                    Refresh Analytics
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             SUMMARY CARDS
+        ====================================== -->
+
+        <section class="stats-grid">
+
+
+            <!-- TOTAL INSPECTIONS -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>Total Inspections</span>
+
+                    <div class="stat-icon blue">
+                        <i data-lucide="clipboard-check"></i>
+                    </div>
+
+                </div>
+
+                <h2 id="analyticsTotal">0</h2>
+
+                <p>All recorded inspections</p>
+
+            </div>
+
+
+            <!-- TOTAL DETECTIONS -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>Total Detections</span>
+
+                    <div class="stat-icon cyan">
+                        <i data-lucide="scan"></i>
+                    </div>
+
+                </div>
+
+                <h2 id="analyticsDetections">0</h2>
+
+                <p>Objects detected by AI</p>
+
+            </div>
+
+
+            <!-- POTENTIAL VIOLATIONS -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>Potential Violations</span>
+
+                    <div class="stat-icon orange">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+
+                </div>
+
+                <h2 id="analyticsViolations">0</h2>
+
+                <p>Recorded potential violations</p>
+
+            </div>
+
+
+            <!-- HIGH RISK INSPECTIONS -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>High Risk Inspections</span>
+
+                    <div class="stat-icon red">
+                        <i data-lucide="shield-alert"></i>
+                    </div>
+
+                </div>
+
+                <h2 id="analyticsHighRisk">0</h2>
+
+                <p>Inspections classified as high risk</p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ======================================
+             ANALYTICS CHARTS
+        ====================================== -->
+
+        <section class="analytics-grid">
+
+
+            <!-- RISK DISTRIBUTION -->
+
+            <div class="panel analytics-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>Risk Distribution</h3>
+
+                        <p>Breakdown of inspection risk levels</p>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="riskChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- INSPECTION ACTIVITY -->
+
+            <div class="panel analytics-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>Inspection Activity</h3>
+
+                        <p>Inspection records over time</p>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="activityChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- PPE VIOLATIONS -->
+
+            <div class="panel analytics-panel full-width-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>Potential PPE Violations</h3>
+
+                        <p>Frequency of recorded missing-PPE detections</p>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-container violation-chart">
+
+                    <canvas id="violationChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ANALYTICS STATUS MESSAGE -->
+
+        <p id="analyticsMessage" class="analytics-message">
+
+            Loading analytics...
+
+        </p>
+
+
+        <!-- ======================================
+             FOOTER
+        ====================================== -->
+
+        <footer class="dashboard-footer">
+
+            <p>
+                © 2026 SiteGuard AI. Industrial Safety Monitoring.
+            </p>
+
+            <p>
+                Analytics powered by AI inspection records.
+            </p>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<!-- ======================================
+     JAVASCRIPT
+====================================== -->
+
+<script src="../js/api.js"></script>
+
+<script src="../js/app.js"></script>
+
+<script src="../js/analytics.js"></script>
+
+
+<!-- INITIALIZE ICONS -->
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
