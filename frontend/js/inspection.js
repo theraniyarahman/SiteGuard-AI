@@ -196,6 +196,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const result = await uploadInspection(selectedFile);
 
             console.log("Backend response:", result);
+            console.log("Parsed inspection:", result.inspection);
+            console.log("Risk assessment:", result.inspection?.risk_assessment);
+            console.log("Summary:", result.inspection?.summary);
 
             if (!result || result.status !== "success") {
                 throw new Error("Inspection failed.");
@@ -248,8 +251,22 @@ document.addEventListener("DOMContentLoaded", () => {
             inspection.images ||
             {};
 
-        const riskLevel = inspection.risk_level || "UNKNOWN";
-        const riskClass = riskLevel.toLowerCase();
+        // Support both the nested live API response and flattened
+        // database fields returned by saved-inspection endpoints.
+        const riskAssessment = inspection.risk_assessment || {};
+        const summary = inspection.summary || {};
+
+        const riskLevel =
+            riskAssessment.risk_level ??
+            inspection.risk_level ??
+            "UNKNOWN";
+
+        const riskScore =
+            riskAssessment.risk_score ??
+            inspection.risk_score ??
+            0;
+
+        const riskClass = String(riskLevel).toLowerCase();
 
         const annotatedPath =
             images.annotated ||
@@ -272,18 +289,27 @@ document.addEventListener("DOMContentLoaded", () => {
             : "";
 
         const totalDetections =
-            inspection.total_detections ?? detections.length;
+            summary.total_detections ??
+            inspection.total_detections ??
+            detections.length;
 
         const potentialViolations =
-            inspection.potential_violations ?? 0;
+            summary.potential_violations ??
+            riskAssessment.potential_violation_count ??
+            inspection.potential_violations ??
+            0;
 
         const peopleDetected =
-            inspection.people_detected ?? 0;
+            summary.people_detected ??
+            inspection.people_detected ??
+            0;
 
         const ppeDetections =
+            summary.ppe_detections ??
             inspection.ppe_detections ??
             detections.filter(item =>
-                isPPEClass(item.class_name)
+                isPPEClass(item.class_name) &&
+                !isViolationClass(item.class_name)
             ).length;
 
         const inspectionId =
@@ -433,7 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="result-card">
                     <span>Risk Score</span>
-                    <h2>${escapeHTML(inspection.risk_score ?? 0)}</h2>
+                    <h2>${escapeHTML(riskScore)}</h2>
                 </div>
 
                 <div class="result-card">
@@ -685,7 +711,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 inspectionDate,
                 filename,
                 riskLevel,
-                riskScore: inspection.risk_score ?? 0,
+                riskScore,
                 peopleDetected,
                 totalDetections,
                 potentialViolations,
