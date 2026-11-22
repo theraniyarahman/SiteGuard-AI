@@ -1,5 +1,4 @@
-
-const API_BASE_URL = "http://127.0.0.1:8004";
+const API_BASE_URL = "https://siteguard-ai-latest.onrender.com";
 
 async function getInspections() {
     const response = await fetch(
