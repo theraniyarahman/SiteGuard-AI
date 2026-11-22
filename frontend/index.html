@@ -27,7 +27,29 @@
 </head>
 
 <body>
+    <!-- ================= SPLASH SCREEN ================= -->
 
+<div id="splashScreen" class="splash-screen">
+
+    <div class="splash-content">
+
+        <img
+            src="assets/images/siteguard-logo.png"
+            alt="SiteGuard AI Logo"
+            class="splash-logo"
+        >
+
+        <h1>SiteGuard<span>AI</span></h1>
+
+        <div class="splash-loader">
+            <div class="splash-progress"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= APPLICATION ================= -->
     <div class="app-container">
 
         <!-- ================= SIDEBAR ================= -->
@@ -509,6 +531,37 @@
 
     <script>
         lucide.createIcons();
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const splashScreen = document.getElementById("splashScreen");
+        const minimumDuration = 1500;
+        const startTime = Date.now();
+
+        function hideSplashScreen() {
+
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, minimumDuration - elapsed);
+
+            setTimeout(() => {
+
+                splashScreen.classList.add("hide");
+
+                setTimeout(() => {
+                    splashScreen.remove();
+                }, 750);
+
+            }, remaining);
+        }
+
+        if (document.readyState === "complete") {
+            hideSplashScreen();
+        } else {
+            window.addEventListener("load", hideSplashScreen, { once: true });
+        }
+
+    });
     </script>
 
 </body>
