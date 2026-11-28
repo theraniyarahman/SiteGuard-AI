@@ -6,9 +6,9 @@ The application analyzes uploaded workplace images, detects safety equipment and
 
 ## Live Demo
 
-**Website:** [Add your deployed website URL here]
+**Website:** https://theraniyarahman.github.io/SiteGuard-AI
 
-**GitHub Repository:** 
+**GitHub Repository:** https://github.com/theraniyarahman/SiteGuard-AI
 
 ## Project Overview
 
@@ -315,5 +315,5 @@ Interactive API documentation is available through FastAPI Swagger UI at `/docs`
 
 **Raniya Rahman**
 
-GitHub: [@your-github-username](https://github.com/your-github-username)
+GitHub: https://github.com/theraniyarahman
 Developed as a portfolio project focused on AI, computer vision and full-stack application development.
